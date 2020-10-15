@@ -1,12 +1,15 @@
 package main
 
 import (
+	"flag"
 	"github.com/csmith/makeaddon"
 	"log"
 	"os"
 )
 
 func main() {
+	flag.Parse()
+
 	cwd, err := os.Getwd()
 	if err != nil {
 		log.Fatalf("Unable to get working directory: %v", err)
@@ -19,11 +22,13 @@ func main() {
 
 	builder, err := makeaddon.NewBuilder(cwd, f)
 	if err != nil {
+		_ = os.Remove("addon.zip")
 		log.Fatalf("Unable to create builder: %v", err)
 	}
 
 	err = builder.Build()
 	if err != nil {
+		_ = os.Remove("addon.zip")
 		log.Fatalf("Unable to build: %v", err)
 	}
 
