@@ -1,0 +1,21 @@
+package-as: SomeAddon
+manual-changelog: changelog.txt
+wowi-archive-previous: yes
+
+
+externals:
+  Libs/LibStub:
+    url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+    tag: latest
+  Libs/CallbackHandler-1.0:
+    url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+    tag: latest
+  Libs/UTF8: svn://svn.wowace.com/wow/utf8/mainline/trunk
+  Libs/LibCustomGlow-1.0:
+    url: https://github.com/Stanzilla/LibCustomGlow
+
+  Libs/ChatThrottleLib: svn://svn.wowace.com/wow/chatthrottlelib/mainline/trunk
+
+
+move-folders:
+  SomeAddon/SomeAddonOptions: SomeAddonOptions

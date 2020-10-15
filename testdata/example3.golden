@@ -1,0 +1,34 @@
+{
+  "PackageAs": "SomeAddon",
+  "ManualChangelog": {
+    "Filename": "CHANGELOG.md",
+    "MarkupType": "markdown"
+  },
+  "Externals": {
+    "WeakAuras/Libs/LibCustomGlow-1.0": {
+      "Url": "https://github.com/Stanzilla/LibCustomGlow",
+      "Tag": ""
+    },
+    "WeakAuras/Libs/LibSerialize": {
+      "Url": "https://github.com/rossnichols/LibSerialize",
+      "Tag": "v1.0.0"
+    },
+    "WeakAuras/Libs/LibStub": {
+      "Url": "https://repos.curseforge.com/wow/libstub/trunk",
+      "Tag": ""
+    }
+  },
+  "MoveFolders": {
+    "SomeAddon/SomeAddon": "SomeAddon",
+    "SomeAddon/SomeAddonArchive": "SomeAddonArchive",
+    "SomeAddon/SomeAddonTemplates": "SomeAddonTemplates"
+  },
+  "Ignore": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "update_translations.sh",
+    "generate_changelog.sh"
+  ],
+  "LicenseOutput": "",
+  "NoLibCreation": false
+}

@@ -1,0 +1,26 @@
+package-as: SomeAddon
+
+externals:
+  WeakAuras/Libs/LibStub: https://repos.curseforge.com/wow/libstub/trunk
+  WeakAuras/Libs/LibCustomGlow-1.0: https://github.com/Stanzilla/LibCustomGlow
+  WeakAuras/Libs/LibSerialize:
+    url: https://github.com/rossnichols/LibSerialize
+    tag: v1.0.0
+
+enable-nolib-creation: no
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+ignore:
+  - README.md
+  - CONTRIBUTING.md
+  - update_translations.sh
+  - generate_changelog.sh
+
+
+move-folders:
+  SomeAddon/SomeAddon: SomeAddon
+  SomeAddon/SomeAddonTemplates: SomeAddonTemplates
+  SomeAddon/SomeAddonArchive: SomeAddonArchive

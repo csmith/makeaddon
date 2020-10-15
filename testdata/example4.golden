@@ -1,0 +1,39 @@
+{
+  "PackageAs": "Monkey",
+  "ManualChangelog": {
+    "Filename": "CHANGELOG.txt",
+    "MarkupType": "plain"
+  },
+  "Externals": {
+    "libs/CallbackHandler-1.0": {
+      "Url": "svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0",
+      "Tag": "latest"
+    },
+    "libs/LibBanana-1.0": {
+      "Url": "git://git.curseforge.net/wow/libbanana-1-0/mainline.git",
+      "Tag": "1.2"
+    },
+    "libs/LibMonkey-1.0": {
+      "Url": "svn://svn.curseforge.net/wow/libmonkey-1-0/mainline/trunk",
+      "Tag": ""
+    },
+    "libs/LibStub": {
+      "Url": "svn://svn.wowace.com/wow/libstub/mainline/trunk",
+      "Tag": "latest"
+    },
+    "libs/LibSuit-2.0": {
+      "Url": "http://hg.curseforge.net/wow/libsuit-2-0/mainline",
+      "Tag": ""
+    }
+  },
+  "MoveFolders": {
+    "Monkey/Modules/Hat": "Monkey_Hat",
+    "Monkey/Modules/Suit": "Monkey_Suit"
+  },
+  "Ignore": [
+    "Scripts",
+    "Some/File.txt"
+  ],
+  "LicenseOutput": "LICENSE.txt",
+  "NoLibCreation": true
+}

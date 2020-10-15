@@ -1,0 +1,26 @@
+= World of Warcraft addon builder
+
+Library and command-line utility for creating a zip file for a World of
+Warcraft addon based on `.pkgmeta` files used by WowAce/CurseForge.
+
+Usage:
+
+[source,shell]
+----
+# Install:
+$ go get -u github.com/csmith/makeaddon/cmd/makeaddon
+
+# Build an addon:
+$ cd path/to/addon
+$ makeaddon
+$ ls -l addon.zip
+----
+
+Current issues:
+
+- Specifying a tag of "latest" should check out the latest tag, but currently checks out the
+  latest version (i.e., `master` for git repos).
+- The `package-as` field currently must be present, but it's optional for WowAce/CurseForge builds.
+- CurseForge replaces tokens in text files as documented in their
+  https://authors.curseforge.com/knowledge-base/projects/3451-automatic-packaging[knowledge base].
+  makeaddon does not yet perform these substitutions.

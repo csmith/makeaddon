@@ -1,0 +1,35 @@
+{
+  "PackageAs": "SomeAddon",
+  "ManualChangelog": {
+    "Filename": "changelog.txt",
+    "MarkupType": "plain"
+  },
+  "Externals": {
+    "Libs/CallbackHandler-1.0": {
+      "Url": "svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0",
+      "Tag": "latest"
+    },
+    "Libs/ChatThrottleLib": {
+      "Url": "svn://svn.wowace.com/wow/chatthrottlelib/mainline/trunk",
+      "Tag": ""
+    },
+    "Libs/LibCustomGlow-1.0": {
+      "Url": "https://github.com/Stanzilla/LibCustomGlow",
+      "Tag": ""
+    },
+    "Libs/LibStub": {
+      "Url": "svn://svn.wowace.com/wow/libstub/mainline/trunk",
+      "Tag": "latest"
+    },
+    "Libs/UTF8": {
+      "Url": "svn://svn.wowace.com/wow/utf8/mainline/trunk",
+      "Tag": ""
+    }
+  },
+  "MoveFolders": {
+    "SomeAddon/SomeAddonOptions": "SomeAddonOptions"
+  },
+  "Ignore": null,
+  "LicenseOutput": "",
+  "NoLibCreation": true
+}
