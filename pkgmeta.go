@@ -1,7 +1,6 @@
 package makeaddon
 
 import (
-	"fmt"
 	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
@@ -19,6 +18,13 @@ type MetaData struct {
 	Ignore          []string            `yaml:"ignore"`
 	LicenseOutput   string              `yaml:"license-output"`
 	NoLibCreation   bool                `yaml:"enable-nolib-creation"`
+}
+
+func newMetadata(defaultPackageName string) *MetaData {
+	return &MetaData{
+		PackageAs:     defaultPackageName,
+		NoLibCreation: true,
+	}
 }
 
 // External represents a configured external resource - a VCS url and optionally a tag.
@@ -59,16 +65,14 @@ func (m *Changelog) UnmarshalYAML(unmarshal func(interface{}) error) error {
 }
 
 // ReadMetaData reads package metadata from the given reader.
-func ReadMetaData(reader io.Reader) (*MetaData, error) {
-	data := MetaData{
-		NoLibCreation: true,
-	}
-	return &data, yaml.NewDecoder(reader).Decode(&data)
+func ReadMetaData(reader io.Reader, defaultPackageName string) (*MetaData, error) {
+	data := newMetadata(defaultPackageName)
+	return data, yaml.NewDecoder(reader).Decode(&data)
 }
 
 // MetaDataFromDirectory scans the given directory to find a relevant metadata file and returns a
 // processed representation.
-func MetaDataFromDirectory(dir string) (*MetaData, error) {
+func MetaDataFromDirectory(dir, defaultPackageName string) (*MetaData, error) {
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
 		return nil, err
@@ -83,11 +87,11 @@ func MetaDataFromDirectory(dir string) (*MetaData, error) {
 
 			//goland:noinspection GoDeferInLoop
 			defer f.Close()
-			return ReadMetaData(f)
+			return ReadMetaData(f, defaultPackageName)
 		}
 	}
 
-	return nil, fmt.Errorf("pkgmeta file not found in path %s", dir)
+	return newMetadata(defaultPackageName), nil
 }
 
 func isFile(name string) bool {

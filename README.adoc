@@ -20,7 +20,6 @@ Current issues:
 
 - Specifying a tag of "latest" should check out the latest tag, but currently checks out the
   latest version (i.e., `master` for git repos).
-- The `package-as` field currently must be present, but it's optional for WowAce/CurseForge builds.
 - CurseForge replaces tokens in text files as documented in their
   https://authors.curseforge.com/knowledge-base/projects/3451-automatic-packaging[knowledge base].
   makeaddon does not yet perform these substitutions.

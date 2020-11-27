@@ -19,10 +19,10 @@ type Builder struct {
 }
 
 // NewBuilder creates a new builder for an addon in the given directory, which will be written as a zip file to
-// the given output stream. Returns an error if the addon metadata could not be found. The actual build process
+// the given output stream. Returns an error if the addon metadata could not be read. The actual build process
 // is invoked by calling the Build() function.
-func NewBuilder(dir string, out io.Writer) (*Builder, error) {
-	data, err := MetaDataFromDirectory(dir)
+func NewBuilder(dir, defaultPackageName string, out io.Writer) (*Builder, error) {
+	data, err := MetaDataFromDirectory(dir, defaultPackageName)
 	if err != nil {
 		return nil, err
 	}

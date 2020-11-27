@@ -17,7 +17,7 @@ func TestRead(t *testing.T) {
 			f, _ := os.Open(path.Join("testdata", fmt.Sprintf("%s.yml", tests[i])))
 			defer f.Close()
 
-			actual, err := ReadMetaData(f)
+			actual, err := ReadMetaData(f, "unused")
 			if err != nil {
 				t.Fatalf("unable to read pkgmeta: %v", err)
 			}

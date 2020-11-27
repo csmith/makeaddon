@@ -5,6 +5,7 @@ import (
 	"github.com/csmith/makeaddon"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -20,7 +21,7 @@ func main() {
 		log.Fatalf("Unable to create output file: %v", err)
 	}
 
-	builder, err := makeaddon.NewBuilder(cwd, f)
+	builder, err := makeaddon.NewBuilder(cwd, filepath.Base(cwd), f)
 	if err != nil {
 		_ = os.Remove("addon.zip")
 		log.Fatalf("Unable to create builder: %v", err)
