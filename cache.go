@@ -14,7 +14,12 @@ import (
 
 var (
 	cacheDir = flag.String("cache-dir", "", "Directory to cache dependencies in")
+	cache    *Cache
 )
+
+func init() {
+	cache = NewCache()
+}
 
 // Cache provides persistent directories for checking out dependencies.
 type Cache struct {

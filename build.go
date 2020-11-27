@@ -33,7 +33,7 @@ func NewBuilder(dir string, out io.Writer) (*Builder, error) {
 	return &Builder{
 		dir:    dir,
 		data:   data,
-		cache:  NewCache(),
+		cache:  cache,
 		writer: zip.NewWriter(out),
 		mapper: NewFolderMap(data),
 	}, nil
