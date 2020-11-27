@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	cacheDir = flag.String("cache-dir", "", "Directory to cache dependencies in")
+	cacheDir = flag.String("cache-dir", "", "Directory to cache VCS checkouts in")
 	cache    *Cache
 )
 

@@ -2,10 +2,8 @@ package makeaddon
 
 import (
 	"archive/zip"
-	"github.com/Masterminds/vcs"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -16,7 +14,6 @@ import (
 type Builder struct {
 	dir    string
 	data   *MetaData
-	cache  *Cache
 	writer *zip.Writer
 	mapper FolderMap
 }
@@ -33,7 +30,6 @@ func NewBuilder(dir string, out io.Writer) (*Builder, error) {
 	return &Builder{
 		dir:    dir,
 		data:   data,
-		cache:  cache,
 		writer: zip.NewWriter(out),
 		mapper: NewFolderMap(data),
 	}, nil
@@ -42,7 +38,7 @@ func NewBuilder(dir string, out io.Writer) (*Builder, error) {
 // Build creates an addon, checking out dependencies and copying over source files.
 func (b *Builder) Build() error {
 	for dest := range b.data.Externals {
-		if err := b.checkout(b.data.Externals[dest], dest); err != nil {
+		if err := b.copyExternal(b.data.Externals[dest], dest); err != nil {
 			return err
 		}
 	}
@@ -54,41 +50,12 @@ func (b *Builder) Build() error {
 	return b.writer.Close()
 }
 
-// checkout clones the remote repository to a temporary dir then adds it to the addon zip at the target location.
-func (b *Builder) checkout(config External, target string) error {
-	log.Printf("Checking out dependency %s", config.Url)
-	dir, fresh := b.cache.Dir(config.Url, config.Tag)
-
-	var repo vcs.Repo
-	var err error
-	if strings.HasPrefix(config.Url, "https://repos.wowace.com/wow/") {
-		repo, err = vcs.NewSvnRepo(config.Url, dir)
-	} else {
-		repo, err = vcs.NewRepo(config.Url, dir)
-	}
+// copyExternal clones the remote repository then adds it to the addon zip at the target location.
+func (b *Builder) copyExternal(config External, target string) error {
+	dir, err := checkout(config.Url, config.Tag)
 	if err != nil {
 		return err
 	}
-
-	if fresh {
-		if err = repo.Get(); err != nil {
-			return err
-		}
-		if len(config.Tag) > 0 {
-			if err = repo.UpdateVersion(config.Tag); err != nil {
-				return err
-			}
-		}
-	}
-
-	if config.Tag == "latest" {
-		// TODO: Find latest tag and use that version instead
-	} else if config.Tag == "" {
-		if err = repo.Update(); err != nil {
-			return err
-		}
-	}
-
 	return b.copyFiles(dir, "", target)
 }
 
