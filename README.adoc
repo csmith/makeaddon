@@ -10,9 +10,21 @@ Usage:
 # Install:
 $ go get -u github.com/csmith/makeaddon/cmd/makeaddon
 
-# Build an addon:
+# Build an addon in the current directory:
 $ cd path/to/addon
 $ makeaddon
+$ ls -l addon.zip
+
+# Build an addon in the specified directory:
+$ makeaddon path/to/addon
+$ ls -l addon.zip
+
+# Build an addon from a remote source control system:
+$ makeaddon https://github.com/example/addon
+$ ls -l addon.zip
+
+# Build an addon from a specific version of a remote source control system:
+$ makeaddon https://github.com/example/addon v1.2.3
 $ ls -l addon.zip
 ----
 

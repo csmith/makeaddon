@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// checkout clones the remote repository to a cache directory.
-func checkout(url, tag string) (string, error) {
+// Checkout clones the remote repository to a cache directory.
+func Checkout(url, tag string) (string, error) {
 	log.Printf("Checking out %s", url)
 	dir, fresh := cache.Dir(url, tag)
 

@@ -52,7 +52,7 @@ func (b *Builder) Build() error {
 
 // copyExternal clones the remote repository then adds it to the addon zip at the target location.
 func (b *Builder) copyExternal(config External, target string) error {
-	dir, err := checkout(config.Url, config.Tag)
+	dir, err := Checkout(config.Url, config.Tag)
 	if err != nil {
 		return err
 	}
